@@ -111,67 +111,67 @@ class _GroceriesState extends State<Groceries> {
       ),
       body: width < 600
           ? Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    children: groupedGroceries.entries.map((entry) {
-                      final category = entry.key;
-                      final groceries = entry.value;
+        children: [
+          Expanded(
+            child: ListView(
+              children: groupedGroceries.entries.map((entry) {
+                final category = entry.key;
+                final groceries = entry.value;
 
-                      return Card(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        elevation: 4,
-                        child: ExpansionTile(
-                          title: Text(category.name),
-                          children: groceries.map((grocery) {
-                            return ListTile(
-                              title: Text(grocery.title),
-                              subtitle: Text(grocery.amount),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () => _removeGrocery(grocery),
-                              ),
-                            );
-                          }).toList(),
+                return Card(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 8),
+                  elevation: 4,
+                  child: ExpansionTile(
+                    title: Text(category.name),
+                    children: groceries.map((grocery) {
+                      return ListTile(
+                        title: Text(grocery.title),
+                        subtitle: Text(grocery.amount),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => _removeGrocery(grocery),
                         ),
                       );
                     }).toList(),
                   ),
-                ),
-              ],
-            )
-          : Row(
-              children: [
-                Expanded(
-                  child: ListView(
-                    children: groupedGroceries.entries.map((entry) {
-                      final category = entry.key;
-                      final groceries = entry.value;
-
-                      return Card(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        elevation: 4,
-                        child: ExpansionTile(
-                          title: Text(category.name),
-                          children: groceries.map((grocery) {
-                            return ListTile(
-                              title: Text(grocery.title),
-                              subtitle: Text(grocery.amount),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () => _removeGrocery(grocery),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
+                );
+              }).toList(),
             ),
+          ),
+        ],
+      )
+          : Row(
+        children: [
+          Expanded(
+            child: ListView(
+              children: groupedGroceries.entries.map((entry) {
+                final category = entry.key;
+                final groceries = entry.value;
+
+                return Card(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 8),
+                  elevation: 4,
+                  child: ExpansionTile(
+                    title: Text(category.name),
+                    children: groceries.map((grocery) {
+                      return ListTile(
+                        title: Text(grocery.title),
+                        subtitle: Text(grocery.amount),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => _removeGrocery(grocery),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

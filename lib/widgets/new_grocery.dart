@@ -20,7 +20,6 @@ class _NewGroceryState extends State<NewGrocery> {
   final _amountController = TextEditingController();
   Category? _selectedCategory;
 
-  // Helper method to check form validity
   bool _isValidInput() {
     final enteredAmount = _amountController.text.trim();
     return _titleController.text.trim().isNotEmpty &&
@@ -29,34 +28,54 @@ class _NewGroceryState extends State<NewGrocery> {
         _isValidAmount(enteredAmount);
   }
 
-  // Helper method to validate amount (ensure it's numeric)
   bool _isValidAmount(String amount) {
     final parsedAmount = double.tryParse(amount);
     return parsedAmount != null && parsedAmount > 0;
   }
 
-  // Category Dropdown Widget with Icons
   Widget _categoryDropdown() {
     return DropdownButton<Category?>(
       value: _selectedCategory,
       hint: Text(
         'Select Category',
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white, // Ensure text color adapts to the theme
+            ),
       ),
       items: [
         DropdownMenuItem<Category?>(
-            value: null,
-            child: Text('Select Category',
-                style: Theme.of(context).textTheme.bodyLarge)),
+          value: null,
+          child: Text(
+            'Select Category',
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white, // Adjust the color for visibility
+                ),
+          ),
+        ),
         ...Category.values.map(
           (category) => DropdownMenuItem<Category>(
             value: category,
             child: Row(
               children: [
-                Icon(_getCategoryIcon(category),
-                    color: Colors.blue), // Icon for category
+                Icon(
+                  _getCategoryIcon(category),
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white, // Adjust icon color based on the theme
+                ),
                 const SizedBox(width: 8),
-                Text(category.name.toUpperCase())
+                Text(
+                  category.name.toUpperCase(),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white, // Adjust text color for category
+                      ),
+                ),
               ],
             ),
           ),
@@ -70,7 +89,6 @@ class _NewGroceryState extends State<NewGrocery> {
     );
   }
 
-  // Function to get icons for categories
   IconData _getCategoryIcon(Category category) {
     switch (category) {
       case Category.fruitsAndVegetables:
@@ -103,9 +121,22 @@ class _NewGroceryState extends State<NewGrocery> {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Invalid input'),
-          content: const Text(
-              'Please make sure a valid title, amount, and category were entered, and the amount is a valid number.'),
+          title: Text(
+            'Invalid input',
+            style: TextStyle(
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+            ),
+          ),
+          content: Text(
+            'Please make sure a valid title, amount, and category were entered, and the amount is a valid number.',
+            style: TextStyle(
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () {
@@ -150,7 +181,6 @@ class _NewGroceryState extends State<NewGrocery> {
               padding: EdgeInsets.fromLTRB(16, 16, 16, keyboardSpace + 16),
               child: Column(
                 children: [
-                  // Responsive layout for large screens
                   if (width >= 600)
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,15 +219,11 @@ class _NewGroceryState extends State<NewGrocery> {
                       ],
                     ),
                   const SizedBox(height: 16),
-
-                  // Shift the category dropdown to the left
                   Align(
                     alignment: Alignment.centerLeft,
                     child: _categoryDropdown(),
                   ),
                   const SizedBox(height: 16),
-
-                  // Button Row
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
