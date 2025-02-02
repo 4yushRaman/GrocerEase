@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:groceries/widgets/groceries.dart';
 
-var kLightColorScheme = ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 96, 59, 181));
+var kLightColorScheme =
+    ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 96, 59, 181));
 var kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
   seedColor: Color.fromARGB(255, 5, 99, 125),
@@ -25,7 +26,7 @@ class MyAppState extends State<MyApp> {
   void _toggleTheme() {
     setState(() {
       _themeMode =
-      _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+          _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     });
   }
 
@@ -43,7 +44,8 @@ class MyAppState extends State<MyApp> {
           color: kDarkColorScheme.secondaryContainer,
           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -62,7 +64,8 @@ class MyAppState extends State<MyApp> {
           color: kLightColorScheme.secondaryContainer,
           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           elevation: 4,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -82,7 +85,8 @@ class MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      home: Groceries(onToggleTheme: _toggleTheme), // Pass the toggle function here
+      home: Groceries(
+          onToggleTheme: _toggleTheme), // Pass the toggle function here
     );
   }
 }
